@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Dev Business</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/main.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1 class="logo">B A C</h1>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-content">
+        <h2 class="fade-in">Build Your Dream Website with Us!</h2>
+        <p class="fade-in">Professional Website Development Services</p>
+        <a href="#packages" class="btn fade-in">View Packages</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About Us</h2>
+      <p>
+        We offer professional website development services with customizable
+        packages to suit your needs. Choose from our Frontend and Backend
+        packages based on your requirements.
+      </p>
+    </section>
+
+    <section id="packages">
+      <h2>Frontend Packages</h2>
+      <div class="package-cards">
+        <div class="card">
+          <h3>Basic Frontend Package</h3>
+          <ul>
+            <li>Single-page static website (HTML, CSS, JavaScript)</li>
+            <li>Responsive design for desktop and mobile</li>
+            <li>Basic animations and transitions</li>
+            <li>Delivery: 7 days</li>
+          </ul>
+          <span class="price">₹2,000</span>
+        </div>
+        <div class="card">
+          <h3>Standard Frontend Package</h3>
+          <ul>
+            <li>Multi-page static website (HTML, CSS, JavaScript)</li>
+            <li>Custom animations and interactive elements</li>
+            <li>SEO optimization</li>
+            <li>Delivery: 14 days</li>
+          </ul>
+          <span class="price">₹3,000</span>
+        </div>
+        <div class="card">
+          <h3>Premium Frontend Package</h3>
+          <ul>
+            <li>Advanced UI/UX design with custom JavaScript functionality</li>
+            <li>Full cross-browser compatibility</li>
+            <li>Integration with third-party APIs (if required)</li>
+            <li>Delivery: 21 days</li>
+          </ul>
+          <span class="price">₹5,000</span>
+        </div>
+      </div>
+    </section>
+    <section id="packages">
+      <h2>Backend Packages</h2>
+      <div class="package-cards">
+        <div class="card">
+          <h3>Basic Backend Package</h3>
+          <ul>
+            <li>Node.js and Express-based backend</li>
+            <li>User authentication (login/signup)</li>
+            <li>Basic CRUD operations</li>
+            <li>Delivery: 7 days</li>
+          </ul>
+          <span class="price">₹2,000</span>
+        </div>
+        <div class="card">
+          <h3>Standard Backend Package</h3>
+          <ul>
+            <li>RESTful API development</li>
+            <li>Database integration (MongoDB)</li>
+            <li>User roles and permissions</li>
+            <li>Delivery: 14 days</li>
+          </ul>
+          <span class="price">₹3,000</span>
+        </div>
+        <div class="card">
+          <h3>Premium Backend Package</h3>
+          <ul>
+            <li>Scalable architecture with microservices</li>
+            <li>Payment gateway integration</li>
+            <li>Real-time features (WebSockets)</li>
+            <li>Delivery: 30 days</li>
+          </ul>
+          <span class="price">₹5,000</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form action="#" method="POST" id="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 B A C. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
