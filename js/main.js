@@ -160,8 +160,10 @@ window.onload = function () {
     emailjs.sendForm('service_4y06o5p', 'template_qlyxfxl1', this)
       .then(() => {
         console.log('SUCCESS!');
+        alert("Developer Contact you Soon!");
       }, (error) => {
         console.log('FAILED...', error);
+        alert("Internal Server Error Occured");
       });
   });
 }
