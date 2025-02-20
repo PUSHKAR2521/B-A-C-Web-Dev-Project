@@ -6,8 +6,6 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 const isAuthenticated = require('./middlewares/authMiddleware'); // Import middleware
 const cookieParser = require('cookie-parser');
-const speakeasy = require('speakeasy');
-const QRCode = require('qrcode');
 const bcrypt = require('bcrypt');
 
 // Initialize the Express app
