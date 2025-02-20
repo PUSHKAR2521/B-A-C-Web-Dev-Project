@@ -95,8 +95,23 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+// Terms and Conditions route
+app.get('/termsandcondition', (req, res) => {
+  res.render('terms');
+});
+
+// Privacy Policy route
+app.get('/privacypolicy', (req, res) => {
+  res.render('policy');
+});
+
+// Legal Notice route
+app.get('/legal', (req, res) => {
+  res.render('legalnotice');
+});
+
 // Home route
-app.get('/admin/maintenance',async (req, res) => {
+app.get('/admin/maintenance', isAuthenticated, async (req, res) => {
   const maintenance = await Maintenance.findOne();
   res.render("maitenanceToggle", { isMaintenance: maintenance ? maintenance.isMaintenance : false });
 });

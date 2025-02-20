@@ -4,7 +4,7 @@ const isAuthenticated = (req, res, next) => {
   const token = req.cookies.token; // Get token from cookies
 
   if (!token) {
-    return res.redirect('/bac');
+    return res.redirect('/admin/bac');
   }
 
   try {
@@ -12,7 +12,7 @@ const isAuthenticated = (req, res, next) => {
     next();
   } catch (error) {
     console.error('JWT Verification Error:', error.message);
-    return res.redirect('/bac');
+    return res.redirect('/admin/bac');
   }
 };
 
