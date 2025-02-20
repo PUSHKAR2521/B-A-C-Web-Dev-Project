@@ -1,3 +1,13 @@
+:root {
+    --primary-color: #5c6bc0;
+    --primary-hover: #5c5c5c;
+    --background-color: #252525;
+    --text-color: #00ffea6f;
+    --white: #181818;
+    --border-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
 /* Basic reset */
 * {
     margin: 0;
@@ -8,22 +18,34 @@
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 0 20px;
 }
 
 header {
-    background-color: #5c6bc0;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white);
     padding: 10px 0;
     text-align: center;
 }
 
 nav a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
     margin: 0 15px;
+}
+
+a {
+    color: var(--border-color);
+    text-decoration: none;
+    margin: 0 15px;
+    transition: all .5s ease;
+}
+
+a:hover{
+    color: var(--primary-hover);
+    text-decoration: underline;
 }
 
 .content {
@@ -32,8 +54,8 @@ nav a {
 
 footer {
     text-align: center;
-    background-color: #5c6bc0;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white);
     padding: 10px 0;
     position: fixed;
     bottom: 0;
@@ -41,22 +63,25 @@ footer {
 }
 
 form {
-    background-color: #fff;
+    background-color: var(--white);
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
 }
 
 input, textarea {
     width: 100%;
     padding: 10px;
     margin: 5px 0 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
+    outline: none;
     border-radius: 5px;
+    background-color: var(--background-color);
+    color: var(--border-color);
 }
 
 button {
-    background-color: #5c6bc0;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -64,5 +89,5 @@ button {
 }
 
 button:hover {
-    background-color: #3f4e90;
+    background-color: var(--primary-hover);
 }

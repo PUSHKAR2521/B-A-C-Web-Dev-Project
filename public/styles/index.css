@@ -99,7 +99,7 @@ body {
     transform: translateY(-3px);
   }
   
-  #about, #packages, #contact {
+  #about, #team, #packages, #contact {
     padding: 5rem 2rem;
     width: 92vw;
     background: rgba(40, 40, 40, 0.8);
