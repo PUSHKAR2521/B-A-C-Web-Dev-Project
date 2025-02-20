@@ -6,6 +6,9 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 const isAuthenticated = require('./middlewares/authMiddleware'); // Import middleware
 const cookieParser = require('cookie-parser');
+const speakeasy = require('speakeasy');
+const QRCode = require('qrcode');
+const bcrypt = require('bcrypt');
 
 // Initialize the Express app
 const app = express();
@@ -46,6 +49,43 @@ const submissionSchema = new mongoose.Schema({
 
 const Submission = mongoose.model('Submission', submissionSchema);
 
+const maintenanceSchema = new mongoose.Schema({
+  isMaintenance: { type: Boolean, default: false }
+});
+
+const Maintenance = mongoose.model('Maintenance', maintenanceSchema);
+
+const adminSchema = new mongoose.Schema({
+  username: String,
+  password: String, // Hashed password
+  googleAuthSecret: String, // Store secret for OTP verification
+});
+
+adminSchema.pre('save', async function (next) {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 10); // Hash password before saving
+  }
+  next();
+});
+
+const Admin = mongoose.model('Admin', adminSchema);
+
+// Middleware to check maintenance mode
+app.use(async (req, res, next) => {
+  // Allow access to admin routes even in maintenance mode
+  if (req.path.startsWith("/admin")) {
+    return next();
+  }
+
+  const maintenance = await Maintenance.findOne();
+  if (maintenance && maintenance.isMaintenance) {
+    return res.render("maintenance");
+  }
+  next();
+});
+
+
+
 // Admin credentials (you may hash this password in production)
 let admin = {
   username: process.env.ADMIN_USERNAME,
@@ -57,7 +97,14 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/bac', (req, res) => {
+// Home route
+app.get('/admin/maintenance',async (req, res) => {
+  const maintenance = await Maintenance.findOne();
+  res.render("maitenanceToggle", { isMaintenance: maintenance ? maintenance.isMaintenance : false });
+});
+
+
+app.get('/admin/bac', (req, res) => {
   res.render('adminLogin');
 });
 
@@ -149,6 +196,18 @@ app.post('/admin/createReferral', (req, res) => {
 function generateReferralLink(name, phone) {
   return Buffer.from(`${name}-${phone}`).toString('base64'); // Simple encoding for the link
 }
+
+
+// Admin route to enable/disable maintenance mode
+app.post("/admin/toggle-maintenance", async (req, res) => {
+  let maintenance = await Maintenance.findOne();
+  if (!maintenance) {
+    maintenance = new Maintenance();
+  }
+  maintenance.isMaintenance = !maintenance.isMaintenance;
+  await maintenance.save();
+  res.redirect("/admin/maintenance");
+});
 
 // 404 Error Handling
 app.use((req, res, next) => {

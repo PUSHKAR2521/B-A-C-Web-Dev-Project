@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Maintenance Mode</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <p>Maintenance Mode is currently: <strong><%= isMaintenance ? "Enabled" : "Disabled" %></strong></p>
+    
+    <form action="/admin/toggle-maintenance" method="POST">
+        <button type="submit">
+            <%= isMaintenance ? "Disable" : "Enable" %> Maintenance Mode
+        </button>
+    </form>
+</body>
+</html>
