@@ -19,7 +19,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 100;
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
@@ -199,6 +199,61 @@ body {
     background: #e85050;
   }
   
+
+    /* navbar/hamburger code by ftraise59 */
+
+    header nav ul  img{
+      width: 40px;
+    }
+
+    @media(max-width:768px){
+      header ul li{
+        display: none;
+      }
+    }
+
+    @media(min-width:769px){
+      header ul li{
+        display: block;
+      }
+      header ul  img{
+        display: none;
+      }
+    }
+
+    #hamburger{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      z-index: 101;
+      display: none;
+    }
+    
+    #hamburger>div{
+      width: 112vw;
+      height: 105vh;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    #hamburger>div a{
+      text-decoration: none;
+      color: whitesmoke;
+    }
+
+    #hamburger #hamClose{
+      position: absolute;
+      left: 83%;
+      top: 6%;
+      font-size: 30px;
+    } 
+
+
   footer {
     width: 100%;
     text-align: center;
