@@ -19,11 +19,13 @@
       $(document).ready(function(){
         $('#hamOpen').click(function(){
           $("#hamburger").fadeToggle()
-          $("#hamburger").css({"overflow-y":"hidden"})
+          $("#hamOpen").hide()
 
         })
         $('#hamClose').click(function(){
           $("#hamburger").fadeToggle()
+          $("#hamOpen").show()
+
         })
         $('.navLink').click(function(){
           $("#hamburger").hide()
