@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const isAuthenticated = require('./middlewares/authMiddleware'); // Import middleware
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
+const { SitemapStream, streamToPromise } = require("sitemap");
 
 // Initialize the Express app
 const app = express();
@@ -99,6 +100,12 @@ app.get('/', (req, res) => {
 app.get('/termsandcondition', (req, res) => {
   res.render('terms');
 });
+
+// Privacy Policy route
+app.get('/privacypolicy', (req, res) => {
+  res.render('policy');
+});
+
 
 // Privacy Policy route
 app.get('/privacypolicy', (req, res) => {
@@ -221,6 +228,35 @@ app.post("/admin/toggle-maintenance", async (req, res) => {
   await maintenance.save();
   res.redirect("/admin/maintenance");
 });
+
+app.get("/sitemap.xml", async (req, res) => {
+  try {
+    const sitemap = new SitemapStream({ hostname: "https://www.officialbac.xyz" });
+
+    // Add website pages dynamically
+    sitemap.write({ url: "/", changefreq: "daily", priority: 1.0 });
+    sitemap.write({ url: "/#about", changefreq: "monthly", priority: 0.8 });
+    sitemap.write({ url: "/#team", changefreq: "monthly", priority: 0.7 });
+    sitemap.write({ url: "/#packages", changefreq: "weekly", priority: 0.9 });
+    sitemap.write({ url: "/#contact", changefreq: "monthly", priority: 0.7 });
+
+    sitemap.end();
+
+    const xml = await streamToPromise(sitemap).then((data) => data.toString());
+
+    res.header("Content-Type", "application/xml");
+    res.send(xml);
+  } catch (error) {
+    console.error("Error generating sitemap:", error);
+    res.status(500).end();
+  }
+});
+
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.send(`User-agent: *\nDisallow: /admin\nDisallow: /private\nSitemap: https://www.officialbac.xyz/sitemap.xml`);
+});
+
 
 // 404 Error Handling
 app.use((req, res, next) => {
