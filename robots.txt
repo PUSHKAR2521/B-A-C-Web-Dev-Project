@@ -1,3 +1,0 @@
-User-agent: *
-
-Sitemap: https://neilpatel.com/sitemap_index.xml
