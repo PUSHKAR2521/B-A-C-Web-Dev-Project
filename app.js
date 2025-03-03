@@ -147,7 +147,7 @@ app.post('/submitReferralForm', (req, res) => {
 
   newSubmission.save()
     .then(() => {
-      res.render('submited', { success: 'Developer Contact You Soon' });
+      res.render('submited', { success: 'Developer Contact You Soon on our Email' });
     })
     .catch(err => {
       console.log(err);
